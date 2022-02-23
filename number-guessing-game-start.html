@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+
+  <title>Number guessing game</title>
+
+  <style>
+    html {
+      font-family: sans-serif;
+    }
+
+    body {
+      width: 50%;
+      max-width: 800px;
+      min-width: 480px;
+      margin: 0 auto;
+    }
+
+    .lastResult {
+      color: white;
+      padding: 3px;
+    }
+  </style>
+</head>
+
+<body>
+<h1>Number guessing game</h1>
+
+<p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
+
+<div class="form">
+  <!-- 입력과 버튼을 받고, 추측된 값을 나중에 받도록 함. -->
+  <label for="guessField">Enter a guess: </label>
+  <input type="text" id="guessField" class="guessField">
+  <input type="submit" value="Submit guess" class="guessSubmit">
+</div>
+
+<div class="resultParas">
+  <p class="guesses"></p>
+  <p class="lastResult"></p>
+  <p class="lowOrHi"></p>
+</div>
+
+<script>
+
+  // Math.floor -> 같거나 작은 정수 중에서 가장 큰 값 반환
+  // randomNumber는 수학적 알고리즘을 통해 1 ~ 100 사이 임의의 수를 지정.
+  var randomNumber = Math.floor(Math.random() * 100) + 1;
+
+  var guesses = document.querySelector('.guesses');
+  var lastResult = document.querySelector('.lastResult');
+  var lowOrHi = document.querySelector('.lowOrHi');
+
+  var guessSubmit = document.querySelector('.guessSubmit');
+  var guessField = document.querySelector('.guessField');
+
+  var guessCount = 1;
+  var resetButton;
+  guessField.focus();
+
+  function checkGuess() {
+    // 텍스트필드에서 입력한 현재 값을 변수 값으로 받음.
+    var userGuess = Number(guessField.value);
+
+    // 처음 게임이 실행될 때만 실행시킬 조건문
+    if (guessCount === 1) {
+      guesses.textContent = 'Previous guesses: ';
+    }
+    // 텍스트필드에 입력했던 추측값들을 순차적으로 더해 보여줌
+    guesses.textContent += userGuess + ' ';
+
+    // 추측값이 맞았을 때
+    if (userGuess === randomNumber) {
+      lastResult.textContent = "Congratulations! You got it right!";
+      lastResult.style.backgroundColor = 'green';
+      lowOrHi.textContent = '';
+      setGameOver();
+
+    // 추측 횟수가 열 번을 넘어갈 때
+    } else if (guessCount === 10) {
+      lastResult.textContent = '!!!!! GAME OVER !!!!!'
+      setGameOver();
+
+    // 추측 횟수가 열 번 미만이고, 추측값이 틀렸을 때
+    } else {
+      lastResult.textContent = 'Wrong!';
+      lastResult.style.backgroundColor = 'red';
+      if (userGuess < randomNumber) {
+        lowOrHi.textContent = 'Last guess was low!';
+      } else if (userGuess > randomNumber) {
+        lowOrHi.textContent = 'Last guess was high!';
+      }
+    }
+
+    // 추측 횟수를 하나씩 증가시키고, 텍스트 필드 영역을 비운 다음 포커스 시킴.
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
+  }
+
+  // guessSubmit 버튼에 이벤트 리스너 추가. 이벤트 리스너 함수 안에서는 함수 괄호 필요 없음.
+  guessSubmit.addEventListener('click', checkGuess);
+
+  function setGameOver() {
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    resetButton = document.createElement('button');
+    resetButton.textContent = 'Start new game';
+    document.body.appendChild(resetButton);
+    resetButton.addEventListener('click', resetGame);
+  }
+
+  function resetGame() {
+    guessCount = 1;
+
+    var resetParas = document.querySelectorAll('.resultParas p');
+    // for문을 돌면서 p의 내용값을 전부 초기화
+    for (var i = 0; i < resetParas.length; i++) {
+      resetParas[i].textContent = '';
+    }
+
+    // 코드 상에서 초기화 버튼을 제거
+    resetButton.parentNode.removeChild(resetButton);
+
+    // 폼 작성을 위해 텍스트를 입력하는 곳을 비워놓고 커서를 위치
+    guessField.disabled = false;
+    guessSubmit.disabled = false;
+    guessField.value = '';
+    guessField.focus();
+
+    // lastResult 변수 상의 문장 배경색을 제거한다.
+    lastResult.style.backgroundColor = 'white';
+
+    // 임의의 수를 재지정한다.
+    randomNumber = Math.floor(Math.random() * 100) + 1;
+  }
+
+</script>
+</body>
+</html>
