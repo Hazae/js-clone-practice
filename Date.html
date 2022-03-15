@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+
+    <style>
+        p {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="Dday">
+        <p class="day">D-50</p>
+        <p class="hour">15:</p>
+        <p class="minute">35:</p>
+        <p class="second">40</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script>
+
+        function Dday(start, end) {
+            const startDay = moment(start);
+            const endDay = moment(end);
+            const todayMoment = moment();
+            const today = todayMoment.format();
+            const count = endDay.diff(startDay, "days") + 1;
+            const lastDays = today.diff(startDay, "days");
+            var content = document.getElementsByClassName("Dday")[0];
+            console.log(content);
+            console.log(count);
+        };
+        Dday("2022-03-01", "2022-03-15");
+
+    </script>
+</body>
+</html>
