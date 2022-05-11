@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="font.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: neodgm,'Courier New', Courier, monospace;
+            font-size: 20px;
+        }
+        p {
+            letter-spacing: 1rem;
+        }
+        span {margin: 0 5px; padding: 0;}
+    </style>
+</head>
+<body>
+    <h1 class="h1-clock">
+        <p>
+            <span class="days"></span><span class="hours"></span><span class="minutes"></span><span class="seconds"></span>
+        </p>
+    </h1> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        let days = document.querySelector('.days');
+        let hours = document.querySelector('.hours');
+        let minutes = document.querySelector('.minutes');
+        let seconds = document.querySelector('.seconds');
+
+        function diffDay() {
+            const targetDay = new Date("2022-04-15");
+            const todayTime = new Date();
+
+            const diff = targetDay - todayTime;
+
+            const diffDay = String(Math.floor(diff / (1000*60*60*24))).padStart(2, "0"); 
+            const diffHour = String(Math.floor((diff / (1000*60*60)) % 24)).padStart(2, "0"); 
+            const diffMin = String(Math.floor((diff / (1000*60)) % 60)).padStart(2, "0"); 
+            const diffSec = String(Math.floor(diff / 1000 % 60)).padStart(2, "0");
+
+            days.innerText = `${diffDay}`;
+            hours.innerText = `${diffHour}`;
+            minutes.innerText = `${diffMin}`;
+            seconds.innerText = `${diffSec}`;
+        }
+
+        function init() {
+            setInterval(diffDay, 1000);
+        }
+
+        init();
+    </script>
+</body>
+</html>
