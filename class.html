@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Person {
+        constructor(name, age, city) {
+          console.log("constructor");
+          this.name = name;
+          this.age = age;
+          this.city = city;
+        }
+
+        nextYearAge() {
+          return Number(this.age) + 1;
+        }
+      }
+
+      let kim = new Person("kim", 24, "Seoul");
+
+      kim.eat = function () {
+        return "apple";
+      };
+
+      console.log("김씨 내년에는 몇 살인가요? " + kim.nextYearAge());
+      console.log("김씨가 먹은 건? " + kim.eat());
+
+      let park = new Person("park", 31, "Busan");
+
+      console.log("박씨 내년에는 몇 살인가요? " + park.nextYearAge());
+      //   console.log("박씨가 먹은 건? " + park.eat());
+
+      class introducePerson extends Person {
+        introduce() {
+          return `저는 ${this.city}에 사는 ${this.name}입니다.`;
+        }
+      }
+
+      let lee = new introducePerson("lee", 42, "Gimpo");
+
+      console.log(lee.introduce());
+    </script>
+  </body>
+</html>
