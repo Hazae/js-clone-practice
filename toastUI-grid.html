@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOAST UI GRID</title>
+    <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+    <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+
+    <script>
+      var Grid = tui.Grid;
+
+      const grid = new Grid({
+        el: document.getElementById('wrapper'),
+        columns: [
+          {
+            header: 'col1',
+            name: 'col1',
+          },
+          {
+            header: 'col2',
+            name: 'col2',
+          },
+          {
+            header: 'col3',
+            name: 'col3',
+          },
+        ],
+        header: {
+          complexColumns: [
+            {
+              header: 'col1 + col2',
+              name: 'parent1',
+              childNames: ['col1', 'col2'],
+            },
+            {
+              header: 'col1 + col2 + col3',
+              name: 'parent2',
+              childNames: ['parent1', 'col3'],
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>
