@@ -9,41 +9,80 @@
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
   </head>
   <body>
-    <div id="wrapper"></div>
+    <div id="grid"></div>
 
     <script>
       var Grid = tui.Grid;
 
-      const grid = new Grid({
-        el: document.getElementById('wrapper'),
-        columns: [
-          {
-            header: 'col1',
-            name: 'col1',
-          },
-          {
-            header: 'col2',
-            name: 'col2',
-          },
-          {
-            header: 'col3',
-            name: 'col3',
-          },
-        ],
+      const grid = new tui.Grid({
+        el: document.getElementById('grid'),
+        scrollX: false,
+        scrollY: false,
+        data: gridData,
         header: {
+          height: 160,
           complexColumns: [
             {
-              header: 'col1 + col2',
-              name: 'parent1',
-              childNames: ['col1', 'col2'],
+              header: 'Basic',
+              name: 'mergeColumn1',
+              childNames: ['name', 'artist'],
             },
             {
-              header: 'col1 + col2 + col3',
-              name: 'parent2',
-              childNames: ['parent1', 'col3'],
+              header: 'Extra',
+              name: 'mergeColumn2',
+              childNames: ['type', 'release', 'genre'],
+            },
+            {
+              header: 'Detail',
+              name: 'mergeColumn3',
+              childNames: ['mergeColumn1', 'mergeColumn2'],
+            },
+            {
+              header: 'Count',
+              name: 'mergeColumn4',
+              childNames: ['downloadCount', 'listenCount'],
+            },
+            {
+              header: 'Album Info',
+              name: 'mergeColumn5',
+              childNames: ['price', 'mergeColumn3', 'mergeColumn4'],
             },
           ],
         },
+        columns: [
+          {
+            header: 'Name',
+            name: 'name',
+          },
+          {
+            header: 'Artist',
+            name: 'artist',
+          },
+          {
+            header: 'Type',
+            name: 'type',
+          },
+          {
+            header: 'Release',
+            name: 'release',
+          },
+          {
+            header: 'Genre',
+            name: 'genre',
+          },
+          {
+            header: 'Price',
+            name: 'price',
+          },
+          {
+            header: 'Download',
+            name: 'downloadCount',
+          },
+          {
+            header: 'Listen',
+            name: 'listenCount',
+          },
+        ],
       });
     </script>
   </body>
