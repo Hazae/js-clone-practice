@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=`, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="GET">
+      <input id="ID" type="text" placeholder="아이디를 입력하세요." />
+      <input id="password" type="text" placeholder="비밀번호를 입력하세요." />
+      <input
+        id="phoneNumber"
+        type="number"
+        placeholder="핸드폰 번호를 입력하세요."
+      />
+      <input id="email" type="email" placeholder="이메일을 입력하세요." />
+    </form>
+
+    <script>
+      let _id = document.getElementById("ID").value;
+      let _pw = document.getElementById("password").value;
+      let _pn = document.getElementById("phoneNumber").value;
+      let _email = document.getElementById("email").value;
+
+      function validationID() {
+        let validateID = /^[a-zA-Z0-9]{4,12}$/;
+        const idValueCheck = validateID.test(_id);
+      }
+
+      function validationPW() {
+        let validatePW =
+          /^(?=.*[A-Za-z])(?=.*[!@#$%^&?*+=-])(?=.*\d)[A-Za-z\d!@#$%^&?*+=-]{8, 25}$/;
+        const pwValueCheck = validateID.test(_pw);
+      }
+
+      function validationPN() {
+        let validateNumber = /^010-?([0-9]{4})-?([0-9]){4}$/;
+        const pnValueCheck = validateID.test(_pn);
+      }
+    </script>
+  </body>
+</html>
