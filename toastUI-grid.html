@@ -7,10 +7,25 @@
     <title>TOAST UI GRID</title>
     <link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
     <script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+    <script type="text/javascript" src="https://uicdn.toast.com/tui.pagination/v3.4.0/tui-pagination.js"></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      /* 렌더링 속도 개선 */
+      #wrapper {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 5000px;
+      }
+    </style>
   </head>
   <body>
-    <div id="wrapper"></div>
+    <div id="grid"></div>
 
-    <script src="./grid-data.js"></script>
+    <!-- <script src="./grid-data.js"></script> -->
+    <script src="./grid-board.js"></script>
   </body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" /> -->
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+    <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+  </head>
+  <body>
+    <div class="container" style="min-height: 500px">
+      <h2>DataPicker-Basic</h2>
+      <div class="tui-datepicker-input tui-datetime-input tui-has-focus"><input type="text" id="datepicker-input" aria-label="Date-Time" /> <span class="tui-ico-date"></span></div>
+
+      <div id="wrapper" style="margin-top: -1px"></div>
+    </div>
+
+    <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+      <input type="text" id="datepicker-input-ko" aria-label="Date-Time" />
+      <span class="tui-ico-date"></span>
+    </div>
+    <div class="datepicker-cell" id="datepicker-year-ko"></div>
+
+    <script>
+      $(document).ready(function () {
+        var datepicker = new tui.DatePicker('#wrapper', {
+          language: 'ko',
+          type: 'year',
+          input: {
+            element: '#datepicker-input',
+            format: 'yyyy',
+          },
+        });
+      });
+
+      var calYearKo = new tui.DatePicker('#datepicker-year-ko', {
+        date: new Date(),
+        language: 'ko',
+        type: 'year',
+        input: {
+          element: '#datepicker-input-ko',
+          format: 'yyyy',
+        },
+      });
+    </script>
+  </body>
+</html>
