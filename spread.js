@@ -29,3 +29,34 @@ const copy = [...origin];
 
 console.log(copy);
 console.log(copy === origin);
+
+// 이터러블인 유사 배열 객체를 배열로 변환
+const arrayLike = {
+  0: 1,
+  1: 2,
+  2: 3,
+  length: 3
+};
+
+const arr3 = Array.prototype.slice.call(arrayLike);
+console.log(Array.isArray(arr3));
+
+function sum() {
+  return [... arguments].reduce((pre, cur) => pre + cur, 0);
+}
+console.log(sum(1,2,3));
+
+// 동일한 결과, 더 나은 방법
+const sum = (...args) => args.reduce((pre, cur) => pre + cur, 0);
+
+console.log(sum(1,2,3));
+
+// 스프레드 프로퍼티
+// 객체 복사(얕은 복사)
+const obj = { x: 1, y: 2};
+const copy = {...obj};
+console.log(copy);
+console.log(obj === copy);
+
+const merged = { x: 1, y: 2, ...{a: 3, b: 4}};
+console.log(merged);
