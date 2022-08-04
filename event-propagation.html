@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>이벤트 전파</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="fruits">
+      <li id="apple">사과</li>
+      <li id="banana">바나나</li>
+      <li id="orange">오렌지</li>
+
+      <p>버블링과 캡처링 이벤트 <button>버튼</button></p>
+    </ul>
+
+    <button class="btn1">0</button>
+    <button class="btn2">0</button>
+    <script>
+      const $fruits = document.getElementById('fruits');
+
+      // $fruits.addEventListener('click', event => {
+      //   console.log(`이벤트 단계: ${event.eventPhase}`);
+      //   console.log(`이벤트 타깃: ${event.target}`);
+      //   console.log(`현재 타깃: ${event.currentTarget}`);
+      // });
+
+      // 버블링 단계의 이벤트를 캐치
+      document.body.addEventListener('click', () => {
+        console.log('Handler for body.');
+      });
+
+      // 캡처링 단계의 이벤트를 캐치
+      document.querySelector('p').addEventListener(
+        'click',
+        () => {
+          console.log('Handler for paragraph.');
+        },
+        true
+      );
+
+      // 타깃 단계의 이벤트를 캐치
+      document.querySelector('button').addEventListener('click', () => {
+        console.log('Handler for button');
+      });
+
+      const $btn1 = document.querySelector('.btn1');
+      const $btn2 = document.querySelector('.btn2');
+
+      // Property 방식
+      $btn1.onclick = function (e) {
+        // 화살표함수 방식으로 this를 콘솔에 찍으면 상위 스코프인 window가 찍힘
+        console.log(this);
+        console.log(e.currentTarget);
+        console.log(this === e.currentTarget);
+
+        // 화살표함수 방식일 경우, this가 window를 의미하기 때문에 NaN을 할당한다. -> undefined + 1 이기 때문.
+        ++this.textContent;
+      };
+
+      // 이벤트 리스너 방식
+      $btn2.addEventListener('click', function (e) {
+        console.log(this);
+        console.log(e.currentTarget);
+        console.log(this === e.currentTarget);
+
+        ++this.textContent;
+      });
+    </script>
+  </body>
+</html>
