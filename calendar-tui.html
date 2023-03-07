@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>tui calendar</title>
+  <link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
+  <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+</head>
+<body>
+  <div id="calendar" style="height: 700px;"></div>
+
+  <script>
+    const Calendar = tui.Calendar;
+
+    const container = document.getElementById('calendar');
+
+    const startTime= '2023-01-19';
+    const endTime= '2023-01-20';
+
+    const options = {
+      defaultView: 'week',
+      useFormPopup: true,
+      useDetailPopup: true,
+      usageStatistics: true,
+      week: {
+        startDayOfWeek: 1,
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+      }
+    };
+
+    const calendar = new Calendar(container, options);
+
+    calendar.createEvents([
+
+    ])
+  </script>
+</body>
+</html>

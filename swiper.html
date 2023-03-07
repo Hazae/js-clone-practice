@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- 모바일에서 화면배율을 디바이스 크기 기준으로 설정 -->
+  <!-- 이게 안되면 pc에서의 100px과 모바일에서의 100px이 디바이스 성능에 따라 달라집니다. -->
+
+  <!-- 제이쿼리 불러오기 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- slick 불러오기 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+</head>
+<body style="width: 100%; margin: 0; padding: 0;">
+  <div class="your-class" style="width: 100%; margin: 0; padding: 0;">
+    <div style="background-color: beige; height: 100px; margin: 10px;">your content 1</div>
+    <div style="background-color: darkgreen; height: 100px; margin: 10px;">your content 2</div>
+    <div style="background-color: #b3d7ff; height: 100px; margin: 10px;">your content 3</div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $('.your-class').slick({
+        dots: true,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+      });
+    })
+  </script>
+</body>
+</html>

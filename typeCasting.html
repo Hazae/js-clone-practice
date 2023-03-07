@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Type Casting</title>
+</head>
+<body>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  <script>
+    // String 타입으로 암묵적 타입 변환
+    var x = 10;
+
+    var str = x.toString();
+    console.log(typeof str, str);
+
+    var str = x + '';
+    console.log(typeof str, str);
+    console.log(typeof x, x);
+
+    // 불리언 타입으로 암묵적 타입 변환
+    function isFalsy(v) {
+      return !v;
+    }
+
+    function isTruthy(v) {
+      return !!v;
+    }
+
+    // 모두 True를 반환한다.
+    isFalsy(false);
+    isFalsy(undefined);
+    isFalsy(null);
+    isFalsy(0);
+    isFalsy(NaN);
+    isFalsy('');
+
+    // 모두 True를 반환한다.
+    isTruthy(true);
+    isTruthy('0'); // 빈 문자열이 아닌 문자열은 Truthy 값이다.
+    isTruthy({});
+    isTruthy([]);
+
+    // 옵셔널 체이닝 연산자
+    var elem = null;
+
+    // elem이 null 또는 undefined이면 undefined를 반환하고, 그렇지 않으면 우항의 프로퍼티 참조를 이어간다.
+    var value = elem?.value;
+    console.log(value);
+  </script>
+</body>
+</html>

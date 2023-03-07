@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab</title>
+  <style>
+.tabMenu{
+    float: left;
+    width: 400px;
+    height: 180px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.tabMenu>li{
+    float: left;
+    width: 100px;
+    line-height: 30px;
+}
+.tabMenu>li.active>a{
+    background-color: #ffffff;
+}
+.tabMenu>li:first-child a {
+    border-right: none;
+}
+.tabMenu>li>a{
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    background-color: #cccccc;
+    border: 1px solid #dddddd;
+    border-bottom: none;
+}
+.tabMenu>li.active{
+    border-right: none;
+}
+.tabMenu>li.active div{
+    width: 392px;
+    height: 148px;
+    border: 1px solid #dddddd;
+    z-index: 1;
+}
+.tabMenu>li div{
+   position: absolute;
+   left: 0;
+   top: 40px;
+   overflow: hidden;
+   height: 0;
+}
+.notice ul{
+    float: left;
+    width: 380px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+.notice li{
+    height: 32px;
+    line-height: 32px;
+    font-size: 15px;
+    margin-left: 10px;
+}
+.notice li span{
+    float: right;
+}
+.notice li:nth-child(2n){
+    background-color: #dddddd;
+}
+.notice li:hover{
+    font-weight: bold;
+}
+.gallery li{
+    float: left;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+.gallery img{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+}
+.gallery li:hover{
+    opacity: 0.5;
+}
+  </style>
+</head>
+<body>
+  <ul class="tabMenu">
+    <li class="active">
+      <a href="#">공지사항</a>
+      <div class="notice">
+        <ul>
+          <li><img src="../CJ ONE/M/img/mo_caution_img-211209.jpg"></li>
+          <li><img src="../CJ ONE/M/img/mo_con02_img-211209.jpg"></li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <a href="#">갤러리</a>
+      <div class="gallery">
+        <ul>
+          <li><img src="../CJ ONE/M/img/mo_caution_img-211209.jpg"></li>
+          <li><img src="../CJ ONE/M/img/mo_con02_img-211209.jpg"></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+
+  <script>
+    $(function(){
+      $('.tabMenu>li>a').click(function(){
+        $(this).parent().addClass("active").siblings().removeClass("active");
+        return false;
+      });
+    });
+  </script>
+</body>
+</html>

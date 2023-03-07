@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax</title>
+
+    <style>
+        html{overflow: hidden;}
+ 
+        html, body, #scroll-container {width: 100%; height: 100%; margin: 0; padding: 0;}
+        
+        .content{
+            width: 100%; 
+            height: 100%;
+            background-color: blueviolet;
+            position: relative;
+        }
+        .content > h1{
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%,-50%);
+            margin: 0;
+        
+            font-size: 20em;
+            font-weight: bold;
+            text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+        
+        }
+        .content:nth-child(even){background-color: #333;}
+        .footer {
+            width: 100%; 
+            height: 100%;
+            background-color: blueviolet;
+            position: relative;
+        }
+        .footer > h1 {
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%,-50%);
+            margin: 0;
+        
+            font-size: 20em;
+            font-weight: bold;
+            text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+        }
+ 
+    </style>
+</head>
+<body>
+    <div id="scroll-container">
+        <div class="content"><h1>1</h1></div>
+        <div class="content"><h1>2</h1></div>
+        <div class="content"><h1>3</h1></div>
+        <div class="content"><h1>4</h1></div>
+        <div class="content"><h1>5</h1></div>
+        <div class="content"><h1>6</h1></div>
+    </div>
+    <div class="footer"><h1>7</h1></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var scrollContainer = document.getElementById("scroll-container");
+        
+        scrollContainer.addEventListener("wheel", function(e){
+            e.preventDefault();
+        },{passive : false});
+
+        var $html = $("html");
+ 
+        var page = 1;
+        
+        var lastPage = $(".content").length;
+
+        // 페이지가 로드되면 첫 페이지 시작. 이 작업이 없으면 처음에 스크롤 애니메이트가 작동하지 않음.
+        $html.animate({scrollTop:0},10);
+
+        $(scrollContainer).on("wheel", function(e){
+            if($html.is(":animated")) return;
+            // var animated = $html.is(":animated")? true: false;
+            // console.log(animated);
+
+            if(e.originalEvent.deltaY > 0) {
+                // console.log(e.originalEvent.deltaY);
+
+                if(page === lastPage) return;
+                page++;
+
+            }else if(e.originalEvent.deltaY < 0) {
+                // console.log(e.originalEvent.deltaY);
+
+                if(page === 1) return;
+                page--;
+
+            }
+
+            var posTop = (page-1) * $(window).height();
+
+            $html.animate({scrollTop: posTop});
+
+            if(page === lastPage) {
+                $html.css({
+                    "overflow": "visible"
+                });
+                
+            } else {
+                $html.css({
+                    "overflow": "hidden"
+                })
+            }
+        })
+
+    </script>
+</body>
+
+</html>
